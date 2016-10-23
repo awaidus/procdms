@@ -4,7 +4,7 @@ var userService = require('../services/user-service');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+  res.send('respond with a resource. In User Route');
 });
 
 router.get('/register', function (req, res, next) {
@@ -18,11 +18,11 @@ router.post('/register', function (req, res, next) {
       var vm = {
         title: 'Register User',
         input: req.body,
-        error: 'something went wrong'
+        error: err
       }
       return res.render('users/register', vm);
     }
-    res.redirect('/')
+    res.redirect('/')    
   });
 });
 

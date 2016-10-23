@@ -1,0 +1,13 @@
+
+<div class="form-group form-group-xs" ng-class="{ 'has-error' : isError }">
+    <label class="col-sm-3 control-label" for="{{inputName}}">{{label}}</label>
+    <div class="col-sm-9">
+        <ng-transclude></ng-transclude>
+        <span class="help-inline has-error" ng-show="isError">This field is required</span>
+    </div>
+<!--
+    <span class="help-inline" ng-show="{{formName}}.{{inputName}}.$error.required">This field is
+        required</span> &lt;!&ndash;Error message&ndash;&gt;
+    -->
+
+</div>

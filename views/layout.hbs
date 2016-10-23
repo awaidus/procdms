@@ -1,60 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='app'>
+
 <head>
-  <title>{{title}}</title>
-  <link rel='stylesheet' href='/bower/bootstrap/dist/css/bootstrap.min.css' />
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+	<title>{{title}}</title>
+	<link rel='stylesheet' href='/bower/bootstrap/dist/css/bootstrap.min.css' />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
+
 <body>
-  <header>
-   <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	<header>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Project name</a>
-      </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+					<a class="navbar-brand" href="/">Project name</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a ui-sref="orderList" ui-sref-active="active">Orders Index</a></li>
+						<li><a ui-sref="getorder.order({ id: 0 })" ui-sref-active="active">Add New Order</a></li>
+						
+					</ul>
 
-        <ul class="nav navbar-nav navbar-right">
-         {{#if firstName}}
-         <li><strong>Hi, {{firstName}}</strong></li>
-         <li><a href="/logout">Log Out</a></li>
-         {{else}}
-         <li><a href="/users/login">Log In</a></li>
-         <li><a href="/users/register">Register</a></li>
-         {{/if}}
-       </ul>
+					<ul class="nav navbar-nav navbar-right">
+						{{#if firstName}}
+						<li><strong>Hi, {{firstName}}</strong></li>
+						<li><a href="/logout">Log Out</a></li>
+						{{else}}
+						<li><a href="/users/login">Log In</a></li>
+						<li><a href="/users/register">Register</a></li>
+						{{/if}}
+					</ul>
 
 
-     </div><!--/.nav-collapse -->
-   </div>
- </nav>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</nav>
 
-</header>
+	</header>
 
-<div class="container">
+	<div class="container">
 
-  {{{body}}}
+		{{{body}}}
+		<div ui-view></div>
 
-</div><!-- /.container -->
+	</div>
+	<!-- /.container -->
 
 
 
 </body>
+
 <script src="/bower/jquery/dist/jquery.min.js"></script>
 <script src="/bower/angular/angular.min.js"></script>
 <script src="/bower/angular-resource/angular-resource.min.js"></script>
 <script src="/bower/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="/app/app.js"></script>
+<script src="/app/filters/filters.js"></script>
+<script src="/app/services/orderService.js"></script>
+<script src="/app/controllers/orderCtrl.js"></script>
 
 </html>

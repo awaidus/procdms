@@ -1,0 +1,62 @@
+<table class="table table-bordered table-hover table-condensed">
+    <tr class="info">
+        <th>Sr.</th>
+        <th>Release Details</th>
+        <th>Payment Details</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="item in vm.payments | array ">
+        <td>{{$index + 1}}</td>
+        <td>
+            <div>Release Amount: {{ item.releaseAmount | number }}</div>
+            <div>Submitted Date: {{ item.releaseDate }}</div>
+        </td>
+        <td>
+            <div>{{item.payMode}} NO. {{ item.lcNO }} dated {{ item.lcDate | date: 'dd-MMM-yyyy'}}</div>
+            <div ng-show="{{item.lcExpDate}}">Expiry Date: {{item.lcExpDate | date: 'dd-MMM-yyyy' }} </div>
+        </td>
+        <td>
+            <a ui-sref="getorder.payment({ paymentId: item.id })" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+</table>
+
+
+<!--<div ng-controller="PaginationDemoCtrl">
+    <h4>Default</h4>
+	
+    <pagination 
+		boundary-links="true" 
+		total-items="totalItems" 
+		ng-model="currentPage" 		
+		previous-text="&lsaquo;" 
+		next-text="&rsaquo;" 
+		first-text="&laquo;" 
+		last-text="&raquo;">
+	</pagination>
+    
+
+	
+    <pre>The selected page no: <strong>{{currentPage}}</strong></pre>
+    <button class="btn btn-primary" ng-click="setPage(3)">Set current page to: 3</button>
+   
+    
+    <hr />
+    <h4>Limit the maximum visible buttons</h4>
+    
+	<pagination 
+		total-items="bigTotalItems" 
+		ng-model="bigCurrentPage" 
+		max-size="maxSize" 
+		
+		boundary-links="true" 
+		rotate="false" 
+		num-pages="numPages">
+	</pagination>
+	
+    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+</div>-->
+
+
+

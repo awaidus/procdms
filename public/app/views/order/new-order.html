@@ -1,0 +1,119 @@
+<form name="orderForm" class="form-horizontal" novalidate>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <group-field field="orderId">
+                <input type="text" name="orderId" id="orderId" ng-model="vm.order.orderId" class="form-control">
+            </group-field>
+
+
+            <form-element ng-model="vm.order.orderNo" field = 'orderNo'></form-element>
+
+            <group-field field="orderType">
+                <select ng-model="vm.order.orderType" ng-options="opt as opt for opt in vm.orderType"
+                        class="form-control">
+                </select>
+            </group-field>
+
+            <group-field field="orderNo">
+                <input type="text" name="orderNo" id="orderNo" ng-model="vm.order.orderNo" class="form-control">
+            </group-field>
+
+            <!--<group-field field="orderDate">
+                <input type="text" name="orderDate" id="orderDate" ng-model="vm.order.orderDate" class="form-control"
+                       ng-pattern='/^((\d{4})-(\d{2})-(\d{2})|(\d{2})\/(\d{2})\/(\d{4}))$/'>
+                <span ng-show="orderForm.orderDate.$error.pattern">Incorrect Format, should be YYYY-MM-DD</span>
+            </group-field>-->
+            <group-field field="orderDate">
+                <input type="text" name="orderDate" id="orderDate" ng-model="vm.order.orderDate" class="form-control">
+            </group-field>
+
+
+
+            <group-field field="localSupplier">
+                <div class="form-group form-group-xs">
+                    <select ng-model="vm.order.localSupplier" class="form-control"
+                            ng-options="opt.id as opt.name for opt in vm.localSuppliers">
+                    </select>
+                    <span class="form-group-btn">
+                        <a href="" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                    </span>
+                </div>
+            </group-field>
+
+
+            <group-field field='partShip'><input type="checkbox" ng-model="vm.order.partShip" id="partShip" ng-true-value="'1'" ng-false-value="'1'"></group-field>
+
+        </div>
+        <div class="col-md-4">
+
+        <!--    <control-group label="Total.Ex.Works">
+                <input type="number" name="totalExWorks" id="totalExWorks" class="form-control" readonly
+                       value="{{vm.order.exWorksValue - vm.order.discount - vm.order.agencyComm | number}}">
+            </control-group>
+            -->
+
+
+            <control-group label="Total.FOB">
+                <input type="text" name="TotalFob" id="TotalFob" class="form-control" readonly
+                       value="{{vm.order.exWorksValue - vm.order.discount - vm.order.agencyComm -- vm.order.fobCharges | number}}">
+            </control-group>
+
+
+            <control-group label="docReq1"><input type="text" name="docReq1" id="docReq1" ng-model="vm.order.docReq1" class="form-control"
+                       uib-typeahead="item.shipDoc as item.shipDoc for item in vm.shippingDocuments | filter:$viewValue | limitTo:5"></control-group>
+
+
+            <control-group label="">
+                <button type="submit" ng-click="vm.openReqDocModal()" class="btn btn-default">Add Req. Documents</button>
+            </control-group>
+
+        </div>
+        <div class="col-md-4">
+
+
+        </div>
+        <div class="row col-md-6">
+
+                <button type="submit" ng-click="vm.submitOrderForm()" class="btn btn-success"
+                        ng-disabled="orderForm.$touched && orderForm.$invalid">Save
+                </button>
+                <button type="submit" ng-click="vm.wordDocumentFile()" class="btn btn-primary"
+                        ng-disabled="orderForm.$touched && orderForm.$invalid">Word File
+                </button>
+
+            <div ng-show ="vm.resultFileName ">
+                {{ object1.hidden ? 'Maximize' : 'Minimize' }}
+                {{ vm.resultFileName }}
+
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<!--<formly-form model="vm.order" fields="vm.col1OrderFields" form="vm.form" options="vm.options">
+    <div class="col-sm-offset-3 col-sm-10">
+        <button type="submit" class="btn btn-primary"
+                ng-disabled="orderForm.$invalid || orderForm.$pristine">Save</button>
+    </div>
+</formly-form>	-->
+<!--<control-group label="Local Agent">
+    <div class="form-inline">
+        <ui-select ng-model="vm.order.localSupplier" theme="selectize" ng-disabled="disabled">
+            <ui-select-match placeholder="Select or search...">{{$select.selected.companyName}}</ui-select-match>
+            <ui-select-choices repeat="s in vm.localSuppliers  | filter: $select.search"CREATE OR REPLACE VIEW [Current Product List] AS
+                               SELECT ProductID,ProductName,Category
+                               FROM Products>
+                <span ng-bind-html="s.companyName | highlight: $select.search"></span>
+                <small ng-bind-html="s.cityCountry | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+        <div class="btn-group btn-group-xs" role="group">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+        </div>
+    </div>
+</control-group>-->

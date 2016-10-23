@@ -1,0 +1,14 @@
+<div class="form-group form-group-xs" ng-form="{{field}}"
+     ng-class="{'has-error': {{field}}.$touched && {{field}}.$invalid }">
+    <label class="col-sm-3 control-label" for="{{field}}">{{field | labelCaseDot}} </label>
+
+    <div class="col-sm-9">
+
+        <ng-transclude></ng-transclude>
+
+        <span ng-show="{{field}}.$touched && {{field}}.$invalid">
+			<span class="help-block">{{field | labelCaseDot}} is required </span>
+		</span>
+
+    </div>
+</div>

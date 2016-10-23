@@ -1,0 +1,14 @@
+<div class="form-group form-group-xs" ng-form="{{field}}"
+     ng-class="{'has-error': {{field}}.$dirty && {{field}}.$invalid }">
+    <label class="col-sm-3 control-label" for="{{field}}">{{field | labelCase}} </label>
+
+    <div class="col-sm-9">
+        <input type="checkbox" ng-model="ngModel" id="{{field}}" ng-true-value="'y'" ng-false-value="'n'">
+
+        <span ng-show="{{field}}.$dirty && {{field}}.$invalid">
+			<span class="help-block">{{field | labelCase}} is required </span>
+		</span>
+
+    </div>
+</div>
+

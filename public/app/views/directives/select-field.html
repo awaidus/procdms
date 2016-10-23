@@ -1,0 +1,15 @@
+<div class="form-group form-group-xs" ng-form="{{field}}"
+     ng-class="{'has-error': {{field}}.$invalid }">
+    <label class="col-sm-3 control-label" for="{{field}}">{{field | labelCase}} </label>
+
+    <div class="col-sm-9">
+
+        <select class="form-control" ng-model="ngModel"
+                ng-options="opt.companyCode as opt.companyCode + ' - ' + opt.name for opt in options"></select>
+
+        <span ng-show="{{field}}.$invalid">
+			<span class="help-block">{{field | labelCase}} is required </span>
+		</span>
+
+    </div>
+</div>

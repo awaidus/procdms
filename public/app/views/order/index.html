@@ -1,0 +1,76 @@
+<h1>Orders Index Page</h1>
+
+<div class="input-group input-group-lg">
+    <span class="input-group-addon">Search</span>
+    <input type="text" class="form-control" ng-model="query" autofocus>
+</div>
+
+<table class="table table-bordered table-hover table-condensed" ng-show="query">
+    <tr class="default">
+        <th>Sr.</th>
+        <th>Order Details</th>
+        <th>Suppliers Details</th>
+        <th>Payment Details</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="item in vm.orders | array | filter:query | orderBy: item.orderDate">
+        <td>{{ $index + 1 }}</td>
+        <td>
+            <div>Order No. <strong>{{ item.orderNo }}</strong> dated {{ item.orderDate}}</div>
+            <div>[{{ item.subjectStores}}]</div>
+        </td>
+        <td>
+            <div>M/s. {{item.fsName + ' ' + item.fsCityCountry}}</div>
+            <div>LA: M/s. {{item.lsName + ' ' + item.lsCityCountry}}</div>
+        </td>
+        <td>
+            <div ng-show = "{{item.paymentId}}">
+                <div>{{ item.payMode }} No. {{item.lcNo}} Dated {{ item.lcDate }}</div>
+                <div><strong>Expired on {{ item.lcExpDate }}</strong></div>
+            </div>
+        </td>
+        <td>
+            <a ui-sref="getorder.order({ orderId: item.orderId })" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+</table>
+
+
+<!--<div ng-controller="PaginationDemoCtrl">
+    <h4>Default</h4>
+	
+    <pagination 
+		boundary-links="true" 
+		total-items="totalItems" 
+		ng-model="currentPage" 		
+		previous-text="&lsaquo;" 
+		next-text="&rsaquo;" 
+		first-text="&laquo;" 
+		last-text="&raquo;">
+	</pagination>
+    
+
+	
+    <pre>The selected page no: <strong>{{currentPage}}</strong></pre>
+    <button class="btn btn-primary" ng-click="setPage(3)">Set current page to: 3</button>
+   
+    
+    <hr />
+    <h4>Limit the maximum visible buttons</h4>
+    
+	<pagination 
+		total-items="bigTotalItems" 
+		ng-model="bigCurrentPage" 
+		max-size="maxSize" 
+		
+		boundary-links="true" 
+		rotate="false" 
+		num-pages="numPages">
+	</pagination>
+	
+    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+</div>-->
+
+
+

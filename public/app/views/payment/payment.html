@@ -1,0 +1,45 @@
+<form class="form-horizontal" novalidate ng-submit="vm.submitPaymentForm()">
+    <div class="row">
+        <div class="col-md-4">
+            <input-field ng-model="vm.payment.releaseDate" field="releaseDate"></input-field>
+            <input-field ng-model="vm.payment.releaseAmount" field="releaseAmount"></input-field>
+            <input-field ng-model="vm.payment.amountInWords" field="amountInWords"></input-field>
+            <input-field ng-model="vm.payment.project" field="project"></input-field>
+            <input-field ng-model="vm.payment.budgetHead" field="budgetHead"></input-field>
+            <input-field ng-model="vm.payment.fundsConfRef" field="fundsConfRef"></input-field>
+            <input-field ng-model="vm.payment.fundsAllocation" field="fundsAllocation"></input-field>
+            <input-field ng-model="vm.payment.payMode" field="payMode"></input-field>
+        </div>
+        <div class="col-md-4">
+            <input-field ng-model="vm.payment.importPermitNo" field="importPermitNo"></input-field>
+            <input-field ng-model="vm.payment.importPermitDate" field="importPermitDate"></input-field>
+            <input-field ng-model="vm.payment.importPermitValue" field="importPermitValue"></input-field>
+            <input-field ng-model="vm.payment.ipValueInWords" field="ipValueInWords"></input-field>
+            <input-field ng-model="vm.payment.subjectStores" field="subjectStores"></input-field>
+            <input-field ng-model="vm.payment.appSubDate" field="appSubDate"></input-field>
+            <input-field ng-model="vm.payment.lastDateShipment" field="lastDateShipment"></input-field>
+            <input-field ng-model="vm.payment.expiryDateShipment" field="expiryDateShipment"></input-field>
+            <input-field ng-model="vm.payment.shipPort" field="shipPort"></input-field>
+            <input-field ng-model="vm.payment.bankBranch" field="bankBranch"></input-field>
+        </div>
+        <div class="col-md-4">
+            <input-field ng-model="vm.payment.lcNo" field="lcNo"></input-field>
+            <input-field ng-model="vm.payment.lcDate" field="lcDate"></input-field>
+            <input-field ng-model="vm.payment.lcExpDate" field="lcExpDate"></input-field>
+        </div>
+    </div>
+    <div class="row">
+
+        <checkbox-field ng-model="vm.payment.ipApplication" field="ipApplication"></checkbox-field>
+        <checkbox-field ng-model="vm.payment.bankApplication" field="bankApplication"></checkbox-field>
+
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
