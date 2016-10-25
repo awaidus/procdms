@@ -1,12 +1,12 @@
-<div class="form-group form-group-xs" ng-form="{{field}}"
+<div class="form-group form-group-sm" ng-form="{{field}}"
      ng-class="{'has-error': {{field}}.$touched && {{field}}.$invalid }">
-    <label class="col-sm-3 control-label" for="{{field}}">{{field | labelCase}} </label>
+    <label class="col-sm-3 control-label" for="{{field}}">{{label}} </label>
 
     <div class="col-sm-9">
-        <input type="text" class="form-control" id="{{field}}" ng-model='ngModel'>
+        <input type="text" class="form-control" id="{{field}}" ng-model='record'>
 
         <span ng-show="{{field}}.$touched && {{field}}.$invalid">
-			<span class="help-block">{{field | labelCase}} is required </span>
+			<span class="help-block">{{label}} is required </span>
 		</span>
 
     </div>

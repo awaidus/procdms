@@ -6,8 +6,7 @@ var app = angular.module("app", [
 ]);
 
 app.config([
-    "$stateProvider",
-    "$urlRouterProvider",
+    "$stateProvider", "$urlRouterProvider",
     function ($stateProvider, $urlRouterProvider) {
 
         // For any unmatched url, redirect to homepage
@@ -16,8 +15,9 @@ app.config([
         // Now set up the states
         $stateProvider
             .state('home', {
-                url: "#",
-                templateUrl: "/app/views/order/index.html"
+                url: "/home",
+                templateUrl: "/app/views/order/index.html",
+                controller: 'OrderListCtrl as vm'
             })
             .state('orderList', {
                 url: "/order/getorders",
@@ -40,17 +40,17 @@ app.config([
             .state('getorder', {
                 abstract: true,
                 url: "/order/getorder/:orderId",
-                templateUrl: "angularApps/partial_views/order/order.html"
+                templateUrl: "/app/views/order/order.html"
             })
 
             .state('getorder.order', {
                 url: "/order",
-                templateUrl: "angularApps/partial_views/order/new-order.html",
+                templateUrl: "/app/views/order/new-order.html",
                 controller: 'EditOrderCtrl as vm'
             })
             .state('getorder.paymentList', {
                 url: "/paymentList/",
-                templateUrl: "angularApps/partial_views/payment/index.html",
+                templateUrl: "/app/views/order/index.html",
                 controller: 'PaymentCtrl as vm'
             })
             .state('getorder.payment', {

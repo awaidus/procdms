@@ -49,7 +49,7 @@ exports.create = function (order, next) {
 
 
 exports.update = function (order, next) {
-    var id = order.id;
+    var id = order._id;
     Order.findById(id, function(err, data){
         if (err) {
             return next(err);

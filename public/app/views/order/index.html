@@ -1,6 +1,6 @@
 <h1>Orders Index Page</h1>
 
-<div class="input-group input-group-lg">
+<div class="input-group input-group-lg col-md-6">
     <span class="input-group-addon">Search</span>
     <input type="text" class="form-control" ng-model="query" autofocus>
 </div>
@@ -16,7 +16,7 @@
     <tr ng-repeat="item in vm.orders | array | filter:query | orderBy: item.orderDate">
         <td>{{ $index + 1 }}</td>
         <td>
-            <div>Order No. <strong>{{ item.orderNo }}</strong> dated {{ item.orderDate}}</div>
+            <div>Order No. <strong>{{ item.orderNo }}</strong> dated {{ item.orderDate | date:"dd-MM-yyyy"}}</div>
             <div>[{{ item.subjectStores}}]</div>
         </td>
         <td>
@@ -30,7 +30,7 @@
             </div>
         </td>
         <td>
-            <a ui-sref="getorder.order({ orderId: item.orderId })" class="btn btn-primary">Edit</a>
+            <a ui-sref="getorder.order({ orderId: item._id })" class="btn btn-primary">Edit</a>
             <a href="" class="btn btn-danger">Delete</a>
         </td>
     </tr>

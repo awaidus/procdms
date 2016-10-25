@@ -1,7 +1,7 @@
 "use strict";
 angular.module("app")
-    .factory("OrderService", 
-        ["$http", function($http){
+    .factory("OrderService",
+    ["$http", function ($http) {
 
         var service = {};
         var apiURL = '/api/orders/';
@@ -10,12 +10,16 @@ angular.module("app")
             return $http.get(apiURL);
         };
 
-        service.get = function ($id) {            
-            return  $http.get(apiURL + 'get/' + $id);            
+        service.get = function (id) {
+            return $http.get(apiURL + 'get/' + id);
         };
 
-        service.save = function (record) {           
-            return $http.post(apiURL + 'save', record);
+        service.save = function (record) {
+            
+            if (record._id) {
+                return $http.post(apiURL + 'update', record);
+            }
+            return $http.post(apiURL + 'create', record);
         };
 
         return service;

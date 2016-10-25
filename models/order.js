@@ -37,7 +37,6 @@ var orderScehma = new Schema({
     indentNo: String,
     indentDate: Date,
     budgetHead: String,
-
     
     created: { type: Date, default: Date.now }
 });
