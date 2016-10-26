@@ -1,6 +1,7 @@
 "use strict";
 angular.module("app")
-    .factory("CompaniesService", function($http, $q){
+    .factory("CompanyService", 
+    function($http, $q){
 
         var companies = {};
 

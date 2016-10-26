@@ -10,7 +10,7 @@ app.config([
     function ($stateProvider, $urlRouterProvider) {
 
         // For any unmatched url, redirect to homepage
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/home");
 
         // Now set up the states
         $stateProvider
