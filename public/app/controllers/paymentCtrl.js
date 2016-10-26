@@ -1,51 +1,55 @@
-"use strict";
+(function () {
 
-angular.module("app").controller("PaymentCtrl",
-    ["$http", '$stateParams', '$state', "$filter", "OrderService",
-        function ($http, $stateParams, $state, $filter, OrderService) {
+    "use strict";
+    var angularApp = angular.module("app");
 
-            var vm = this;
 
-            vm.orderId = $stateParams.id;
-            vm.paymentId = $stateParams.paymentId;
+    angularApp.controller("PaymentCtrl",
+        ["$http", '$stateParams', '$state', "$filter", "OrderService",
+            function ($http, $stateParams, $state, $filter, OrderService) {
 
-            OrderService.getAllPayments(vm.orderId).then(
-                function (result) {
-                    vm.payments = result.data;
-                },
-                function (result) {
-                    console.log(result.data);
-                    toastr.error("Some error occurred. See log.");
-                }
-            );
-            OrderService.getPayment(vm.paymentId).then(
-                function (result) {
-                    vm.payment = result.data;
-                    console.log(vm.payment);
-                },
-                function (result) {
-                    console.log(result.data);
-                    toastr.error("Some error occurred. See log.");
-                }
-            );
+                var vm = this;
 
-            vm.submitPaymentForm = function () {
+                vm.orderId = $stateParams.id;
+                vm.paymentId = $stateParams.paymentId;
 
-                OrderService.savePayment(vm.payment).then(
+                OrderService.getAllPayments(vm.orderId).then(
                     function (result) {
-                        console.log(vm.payment);
-                        console.log('submitted...');
-                        console.log(result.data);
-
-                        toastr.success('Successful submitted');
+                        vm.payments = result.data;
                     },
                     function (result) {
                         console.log(result.data);
                         toastr.error("Some error occurred. See log.");
                     }
                 );
-            };
+                OrderService.getPayment(vm.paymentId).then(
+                    function (result) {
+                        vm.payment = result.data;
+                        console.log(vm.payment);
+                    },
+                    function (result) {
+                        console.log(result.data);
+                        toastr.error("Some error occurred. See log.");
+                    }
+                );
 
-        }]); // end PaymentCtrl
+                vm.submitPaymentForm = function () {
 
+                    OrderService.savePayment(vm.payment).then(
+                        function (result) {
+                            console.log(vm.payment);
+                            console.log('submitted...');
+                            console.log(result.data);
 
+                            toastr.success('Successful submitted');
+                        },
+                        function (result) {
+                            console.log(result.data);
+                            toastr.error("Some error occurred. See log.");
+                        }
+                    );
+                };
+
+            }]); // end PaymentCtrl
+
+})

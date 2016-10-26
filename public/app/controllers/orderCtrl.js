@@ -1,7 +1,8 @@
-"use strict";
-var app = angular.module("app");
 
-app.controller("OrderListCtrl",
+"use strict";
+//var app = angular.module("app");
+
+angularApp.controller("OrderListCtrl",
     ["OrderService", "CompanyService",
         function (OrderService, CompanyService) {
 
@@ -9,7 +10,7 @@ app.controller("OrderListCtrl",
 
             CompanyService.getAll().then(
                 function (result) {
-                    console.log(result.data.data);                    
+                    console.log(result.data.data);
                 }
             );
 
@@ -29,7 +30,7 @@ app.controller("OrderListCtrl",
 
 "use strict";
 
-app.controller("EditOrderCtrl",
+angularApp.controller("EditOrderCtrl",
     ["$http", '$stateParams', '$state', "$filter", "OrderService",
         function ($http, $stateParams, $state, $filter, OrderService) {
 
@@ -82,5 +83,4 @@ app.controller("EditOrderCtrl",
 
 
         }]); // end EditOrderCtrl
-
 

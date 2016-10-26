@@ -1,6 +1,8 @@
+
 "use strict";
-angular.module("app")
-    .factory("OrderService",
+
+angularApp.factory("OrderService",
+
     ["$http", function ($http) {
 
         var service = {};
@@ -15,7 +17,7 @@ angular.module("app")
         };
 
         service.save = function (record) {
-            
+
             if (record._id) {
                 return $http.post(apiURL + 'update', record);
             }

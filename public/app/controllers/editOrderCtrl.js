@@ -2,7 +2,7 @@ console.clear(); // <-- keep the console clean on refresh
 
 "use strict";
 
-angular.module("app").controller("EditOrderCtrl",
+angularApp.controller("EditOrderCtrl",
 
         function ($http, $stateParams, $state, $log, OrderService, CompaniesService, LocalSuppliers, toArrayFilter) {
 
