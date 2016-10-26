@@ -24,19 +24,7 @@ app.config([
                 templateUrl: "/app/views/order/index.html",
                 controller: 'OrderListCtrl as vm'
             })
-			
-            /*.state('getorder', {
-                abstract: true,
-                url: "/order/getorder/:id",
-                templateUrl: "angularApps/partial_views/order/order.html",
-                controller: 'EditOrderCtrl as vm',
-				resolve: {
-                    LocalSuppliers: ['CompaniesService', function (CompaniesService) {
-                        return CompaniesService.getAllLocalSuppliers();
-                    }]
-                }
-            })*/
-
+		
             .state('getorder', {
                 abstract: true,
                 url: "/order/getorder/:orderId",

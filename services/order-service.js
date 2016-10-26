@@ -50,11 +50,11 @@ exports.create = function (order, next) {
 
 exports.update = function (order, next) {
     var id = order._id;
-    Order.findById(id, function(err, data){
+    Order.findById(id, function (err, data) {
         if (err) {
             return next(err);
-        }        
-        
+        }
+
         data.orderType = order.orderType;
         data.coverCompanyCode = order.coverCompanyCode;
         data.orderNo = order.orderNo;
@@ -95,5 +95,20 @@ exports.update = function (order, next) {
 
         next(null);
     });
-   
+
 };
+
+exports.get = function (id, next) {
+    
+    if (id) {
+        Order.findById(id, function (err, data) {
+            next(err, data);
+        });
+    }
+    else {
+        Order.find(function (err, data) {
+            next(err, data);
+        });
+    }
+
+}

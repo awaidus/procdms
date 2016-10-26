@@ -2,53 +2,52 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var orderScehma = new Schema({
-    orderType: String,
+    orderType: { type: String },
     coverCompanyCode: String,
-    orderNo: String,
-    orderDate: Date,
-    subjectStores: String,
-    localSupplierId: Number,
-    laRepId: Number,
-    foreignSupplierId: Number,
-    deliveryPort: Number,
-    receivePort: String,
-    shipMode: String,
-    payTerm: String,
-    deliveryPeriod: String,
-    partShip: Boolean,
-    transShip: Boolean,
-    currency: String,
-    exWorksValue: Number,    
-    fobCharges: Number,
-    freightCharges: Number,
-    freightType: String,    
-    rsRate: Number,
-    laOrderNo: String,
-    laOderDate: String,
-    addDocReq: String,    
-    laRefNo: String,
-    laRefDate: Date,
-    piNo: String,
-    piDate: Date,
-    
-    project: String,
-    headProject: String,
-    indenter: String,
-    indentNo: String,
-    indentDate: Date,
-    budgetHead: String,
-    
+    orderNo: { type: String },
+    orderDate: { type: Date },
+    subjectStores: { type: String },
+    localSupplierId: { type: String },
+    laRepId: { type: String },
+    foreignSupplierId: { type: String },
+    deliveryPort: { type: String },
+    receivePort: { type: String },
+    shipMode: { type: String },
+    payTerm: { type: String },
+    deliveryPeriod: { type: String },
+    partShip: { type: Boolean },
+    transShip: { type: Boolean },
+    currency: { type: String },
+    exWorksValue: { type: Number, default: 0.00 },
+    fobCharges: { type: Number, default: 0.00 },
+    freightCharges: { type: Number, default: 0.00 },
+    freightType: { type: String },
+    rsRate: { type: Number, default: 0.00 },
+    laOrderNo: { type: String },
+    laOderDate: { type: String },
+    addDocReq: { type: String },
+    laRefNo: { type: String },
+    laRefDate: { type: Date },
+    piNo: { type: String },
+    piDate: { type: Date },
+
+    project: { type: String },
+    headProject: { type: String },
+    indenter: { type: String },
+    indentNo: { type: String },
+    indentDate: { type: Date },
+    budgetHead: { type: String },
+
     created: { type: Date, default: Date.now }
 });
 
 var Order = mongoose.model('Order', orderScehma);
 
 module.exports = {
-    Order : Order 
+    Order: Order
 };
 
-    
-    
-    
 
-   
+
+
+
