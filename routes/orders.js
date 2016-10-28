@@ -5,15 +5,12 @@ var orderService = require('../services/order-service');
 
 /* GET all orders */
 router.get('/', function (req, res, next) {
-    /* Order.find()
-         .then(function (data) {
-             res.json({ data: data, title: 'Contracts Index' });
-         })*/
+
     orderService.get(null, function (err, data) {
         if (err) {
-            return res.json({ data: error, title: 'Error' });
+            return res.json(err);
         }
-        res.json({ data: data, title: 'Contracts Index' });
+        res.json(data);
     });
 
 });
@@ -21,21 +18,17 @@ router.get('/', function (req, res, next) {
 /* GET specific order */
 router.get('/get/:id?', function (req, res, next) {
 
-    /*Order.findById(req.params.id)
-        .then(function (data) {
-            res.json({ data: data, title: 'Contract' });
-        })*/
     orderService.get(req.params.id, function (err, data) {
         if (err) {
-            return res.json({ data: error, title: 'Error' });
+            res.json(err);
         }
-        res.json({ data: data, title: 'Contract' });
+        res.json(data);
     });
 });
 
 router.get('/create', function (req, res, next) {
     var order = new Order();
-    res.json({ data: order, title: 'Add Order' });
+    res.json(order);
 });
 
 
@@ -43,15 +36,9 @@ router.post('/create', function (req, res, next) {
 
     orderService.create(req.body, function (err) {
         if (err) {
-            var vm = {
-                title: 'Add-Contract',
-                data: req.body,
-                error: err
-            }
-            //return res.render('orders/create', vm);
-            res.json({ data: vm });
+            res.json(err);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 
@@ -60,15 +47,9 @@ router.post('/update', function (req, res, next) {
 
     orderService.update(req.body, function (err) {
         if (err) {
-            var vm = {
-                title: 'Update-Contract',
-                data: req.body,
-                error: err
-            }
-            //return res.render('orders/create', vm);
-            res.json({ data: vm });
+            res.json(err);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 
@@ -78,15 +59,9 @@ router.post('/delete', function (req, res, next) {
 
     orderService.delete(req.body, function (err) {
         if (err) {
-            var vm = {
-                title: 'Delete-Order',
-                data: req.body,
-                error: err
-            }
-            //return res.render('orders/create', vm);
-            res.json({ data: vm });
+            res.json(err);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 

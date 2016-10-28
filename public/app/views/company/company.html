@@ -1,0 +1,49 @@
+<p></p>
+<form name="companyForm" class="form-horizontal" novalidate>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			<!--<form-field label='Company Type' field='companyType' record='vm.company.companyType'></form-field>-->
+
+			<div class="form-group form-group-sm">
+				<label class="col-sm-3 control-label" for="companyType">Company Type {{vm.order.companyType}}</label>
+				<div class="col-sm-9">
+					<select name="companyType" id="companyType" class="form-control"
+					ng-options="option for option in vm.companyTypes" 
+					ng-model="vm.order.companyType"></select>
+				</div>
+			</div>
+
+			<form-field label='Company Code' field='companyCode' record='vm.company.companyCode' ng-show="vm.company.companyType=='CoverCompany'"></form-field>
+			<form-field label='Company Name' field='companyName' record='vm.company.companyName'></form-field>
+			<form-field label='Address' field='address' record='vm.company.address'></form-field>
+			<form-field label='City/Country' field='cityCountry' record='vm.company.cityCountry'></form-field>
+			<form-field label='Phone' field='phone' record='vm.company.phone'></form-field>
+			<form-field label='Fax' field='fax' record='vm.company.fax'></form-field>
+			<form-field label='Email' field='email' record='vm.company.email'></form-field>
+			<form-field label='Contact Person' field='contactPerson' record='vm.company.contactPerson'></form-field>
+			<form-field label='Bank Details' field='bankDetails' record='vm.company.bankDetails'></form-field>
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="form-group form-group-sm">
+            <div class="col-md-offset-2 col-md-10">
+            <a ui-sref="companiesList" class="btn btn-info">Back to List</a>
+
+			<button type="submit" ng-click="vm.save()" class="btn btn-success" 
+			ng-disabled="companyForm.$touched && companyForm.$invalid"><span class="glyphicon glyphicon-save"></span> Save</button>
+            </div>
+        </div>
+	</div>
+
+	<div class="row" ng-show="vm.error">
+		<pre>
+			{{vm.error}}
+		</pre>
+	</div>
+
+</form>

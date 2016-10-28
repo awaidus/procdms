@@ -19,13 +19,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-        </button>
-					<a class="navbar-brand" href="/">Project name</a>
+		  </button>
+					<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span></a>
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a ui-sref="orderList" ui-sref-active="active">Orders Index</a></li>
-						<li><a ui-sref="getorder.order({ orderId: new })" ui-sref-active="active">New Order</a></li>
+						<li ui-sref-active="active"><a ui-sref="orderList">Orders Index</a></li>
+						<li ui-sref-active="active"><a ui-sref="getorder.order({ orderId: new })">New Order</a></li>
+						<li ui-sref-active="active"><a ui-sref="companiesList">All Companeis</a></li>
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
@@ -46,8 +47,8 @@
 
 	</header>
 
-	<div class="container">		
-		
+	<div class="container">
+
 		{{{body}}}
 
 	</div>

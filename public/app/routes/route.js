@@ -20,16 +20,15 @@ angularApp.config([
                 templateUrl: "/app/views/order/index.html",
                 controller: 'OrderListCtrl as vm'
             })
-
             .state('getorder', {
                 abstract: true,
                 url: "/order/getorder/:orderId",
-                templateUrl: "/app/views/order/order.html"
+                templateUrl: "/app/views/order/order-layout.html"
             })
 
             .state('getorder.order', {
                 url: "/order",
-                templateUrl: "/app/views/order/new-order.html",
+                templateUrl: "/app/views/order/order.html",
                 controller: 'EditOrderCtrl as vm'
             })
             .state('getorder.payment', {
@@ -40,6 +39,16 @@ angularApp.config([
             .state('getorder.shipment', {
                 url: "/shipment/:shipmentId",
                 templateUrl: "/app/views/shipment/shipment.html"
+            })
+            .state('companiesList', {
+                url: "/companies",
+                templateUrl: "/app/views/company/index.html",
+                controller: 'CompanyListCtrl as vm'
+            })
+            .state('getcompany', {
+                url: "/company/:companyId",
+                templateUrl: "/app/views/company/company.html",
+                controller: "CompanyEditCtrl as vm"
             })
 
 

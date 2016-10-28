@@ -1,22 +1,16 @@
 
 "use strict";
-//var app = angular.module("app");
 
 angularApp.controller("OrderListCtrl",
     ["OrderService", "CompanyService",
         function (OrderService, CompanyService) {
 
             var vm = this;
-
-            CompanyService.getAll().then(
-                function (result) {
-                    console.log(result.data.data);
-                }
-            );
-
             OrderService.getAll().then(
                 function (result) {
-                    vm.orders = result.data.data;
+                    vm.orders = result.data;
+                    console.log(vm.orders);
+
                 },
                 function (result) {
                     console.error(result.data);
@@ -27,18 +21,21 @@ angularApp.controller("OrderListCtrl",
 
         }]); // end OrderListCtrl
 
-
-"use strict";
-
 angularApp.controller("EditOrderCtrl",
-    ["$http", '$stateParams', '$state', "$filter", "OrderService",
-        function ($http, $stateParams, $state, $filter, OrderService) {
+    ["$http", '$stateParams', '$state', "$filter", "OrderService", "CompanyService",
+        function ($http, $stateParams, $state, $filter, OrderService, CompanyService) {
 
             var vm = this;
 
-            vm.orderId = $stateParams.orderId;
-
             vm.orderType = ['DIRECT', 'DRAFT', 'FOR'];
+
+            CompanyService.getAll().then(
+                function (result) {
+                    vm.companies = result.data;
+                }
+            );
+
+            vm.orderId = $stateParams.orderId;
 
             if (vm.orderId) {
                 OrderService.get(vm.orderId).then(
@@ -56,15 +53,11 @@ angularApp.controller("EditOrderCtrl",
 
             vm.save = function () {
 
-                console.info(vm.order._id);
-
                 OrderService.save(vm.order).then(
 
                     function (result) {
 
-                        console.info(result.data);
-
-                        if (vm.order._id) {
+                        if (!vm.order._id) {
                             $state.go('home');
                             toastr.success("Sucessfully saved.");
                             //$state.go('getorder.order', result.data.id );

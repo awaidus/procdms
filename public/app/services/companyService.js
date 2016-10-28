@@ -20,7 +20,7 @@ angularApp.factory("CompanyService",
 
             if (record._id) {
                 return $http.post(apiURL + 'update', record);
-            }
+            }            
             return $http.post(apiURL + 'create', record);
         };
 

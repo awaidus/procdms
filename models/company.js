@@ -6,13 +6,13 @@ var companySchema = new Schema({
     companyType: { type: String },
     companyCode: { type: String },
     companyName: { type: String },
-    companyAddress: { type: String },
-    companyCityCountry: { type: String },
-    companyFax: { type: String },
-    companyPhone: { type: String },
-    companyEmail: { type: String },
-    companyContactPerson: { type: String },
-    companyBankDetails: { type: String },
+    address: { type: String },
+    cityCountry: { type: String },
+    fax: { type: String },
+    phone: { type: String },
+    email: { type: String },
+    contactPerson: { type: String },
+    bankDetails: { type: String },
         
     created: { type: Date, default: Date.now }
 });

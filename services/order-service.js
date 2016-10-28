@@ -99,16 +99,22 @@ exports.update = function (order, next) {
 };
 
 exports.get = function (id, next) {
-    
+
     if (id) {
-        Order.findById(id, function (err, data) {
-            next(err, data);
-        });
+        Order
+            .findById(id)
+            .populate('company')
+            .exec(function (err, data) {
+                next(err, data);
+            });
     }
     else {
-        Order.find(function (err, data) {
-            next(err, data);
-        });
+        Order
+            .find()
+            .populate('company')
+            .exec(function (err, data) {
+                next(err, data);
+            });
     }
 
 }

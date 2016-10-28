@@ -1,0 +1,42 @@
+<h1>Companies List</h1>
+<p>
+	<a ui-sref="getcompany({ companyId: null })" class="btn btn-primary">Add New Company</a>
+</p>
+
+<div class="input-group input-group-lg col-md-6">	
+	<input type="text" class="form-control" ng-model="query" autofocus>
+    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+</div>
+
+<table class="table table-bordered table-hover table-condensed">
+	<tr class="default">
+		<th>Sr.</th>
+		<th>Company</th>
+		<th>Contacts</th>
+		<th>Type</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="item in vm.companies | array | filter:query | orderBy: item.companyName | limitTo:12">
+		<td>{{ $index + 1 }}</td>
+		<td>
+			<div><strong>{{ item.companyName }}</strong></div>
+			<div>{{item.address}}</div>
+			<div>{{item.cityCountry}}</div>
+		</td>
+		<td>
+			<div>Phone: {{item.phone}}</div>
+			<div>Fax: {{item.fax}}</div>
+			<div>Email: {{item.email}}</div>
+			<div>Contact Person: {{item.contactPerson}}</div>
+		</td>
+		<td class="col-md-1">
+			{{item.companyType}}
+		</td>
+
+		<td class="col-md-2">
+			<a ui-sref="getcompany({ companyId: item._id })" class="btn btn-primary">
+				<span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></a>
+		</td>
+	</tr>
+</table>

@@ -7,9 +7,9 @@ router.get('/', function (req, res, next) {
     
     companyService.get(null, function (err, data) {
         if (err) {
-            return res.json({ data: error, title: 'Error' });
+            return res.json(error);
         }
-        res.json({ data: data, title: 'Company Index' });
+        res.json(data);
     });
 
 });
@@ -18,9 +18,9 @@ router.get('/get/:id?', function (req, res, next) {
 
     companyService.get(req.params.id, function (err, data) {
         if (err) {
-            return res.json({ data: error, title: 'Error' });
+            return res.json(error);
         }
-        res.json({ data: data, title: 'Company' });
+        res.json(data);
     });
 });
 
@@ -34,14 +34,9 @@ router.post('/create', function (req, res, next) {
 
     companyService.create(req.body, function (err) {
         if (err) {
-            var vm = {
-                title: 'Add-Company',
-                data: req.body,
-                error: err
-            }           
-            res.json({ data: vm });
+            return res.json(error);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 
@@ -50,15 +45,9 @@ router.post('/update', function (req, res, next) {
 
     companyService.update(req.body, function (err) {
         if (err) {
-            var vm = {
-                title: 'Update-Company',
-                data: req.body,
-                error: err
-            }
-           
-            res.json({ data: vm });
+            return res.json(error);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 
@@ -66,16 +55,11 @@ router.post('/update', function (req, res, next) {
 
 router.post('/delete', function (req, res, next) {
 
-    companyService.delete(req.body, function (err) {
-        if (err) {
-            var vm = {
-                title: 'Delete-Company',
-                data: req.body,
-                error: err
-            }            
-            res.json({ data: vm });
+    companyService.findOneAndDelete(req.body, function (err) {
+       if (err) {
+            return res.json(error);
         }
-        res.json({ data: req.body });
+        res.json(req.body);
     });
 });
 

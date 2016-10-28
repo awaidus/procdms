@@ -7,9 +7,11 @@ var orderScehma = new Schema({
     orderNo: { type: String },
     orderDate: { type: Date },
     subjectStores: { type: String },
-    localSupplierId: { type: String },
-    laRepId: { type: String },
-    foreignSupplierId: { type: String },
+
+    localSupplierId: { type: Schema.Types.ObjectId, ref: 'Company' },
+    laRepId: { type: Schema.Types.ObjectId, ref: 'Company' },
+    foreignSupplierId: { type: Schema.Types.ObjectId, ref: 'Company' },
+
     deliveryPort: { type: String },
     receivePort: { type: String },
     shipMode: { type: String },
