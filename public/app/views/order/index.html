@@ -5,7 +5,7 @@
     <input type="text" class="form-control" ng-model="query" autofocus>
 </div>
 
-<table class="table table-bordered table-hover table-condensed" ng-show="query">
+<table class="table table-bordered table-hover table-condensed" > <!--use ng-show="query" for hide result -->
     <tr class="default">
         <th>Sr.</th>
         <th>Order Details</th>
@@ -20,7 +20,7 @@
             <div>[{{ item.subjectStores}}]</div>
         </td>
         <td>
-            <div>M/s. {{item.fsName + ' ' + item.fsCityCountry}}</div>
+            <div>M/s. {{item.localSupplier.companyName + ' ' + item.fsCityCountry}}</div>
             <div>LA: M/s. {{item.lsName + ' ' + item.lsCityCountry}}</div>
         </td>
         <td>

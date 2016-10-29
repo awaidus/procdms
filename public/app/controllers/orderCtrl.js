@@ -10,10 +10,9 @@ angularApp.controller("OrderListCtrl",
                 function (result) {
                     vm.orders = result.data;
                     console.log(vm.orders);
-
                 },
                 function (result) {
-                    console.error(result.data);
+                    console.error(result);
                     toastr.error("Some error occurred. See log.");
                 }
             );
@@ -32,6 +31,10 @@ angularApp.controller("EditOrderCtrl",
             CompanyService.getAll().then(
                 function (result) {
                     vm.companies = result.data;
+                    /*vm.localSuppliers = $filter('filter')(result.data, {companyType: "Local"});
+                     vm.foreignSuppliers = $filter('filter')(result.data, {companyType: "Foreign"});
+                     vm.coverCompanies = $filter('filter')(result.data, {companyType: "Cover Company"});*/
+                    
                 }
             );
 
@@ -40,8 +43,9 @@ angularApp.controller("EditOrderCtrl",
             if (vm.orderId) {
                 OrderService.get(vm.orderId).then(
                     function (result) {
-                        vm.order = result.data.data;
+                        vm.order = result.data;
                         vm.order.orderDate = $filter('date')(vm.order.orderDate, "dd-MM-yyyy")
+                        console.log(vm.order.localSupplier);
                     },
                     function (result) {
                         console.error(result);
@@ -54,8 +58,9 @@ angularApp.controller("EditOrderCtrl",
             vm.save = function () {
 
                 OrderService.save(vm.order).then(
-
                     function (result) {
+
+                        toastr.success("Sucessfully saved");
 
                         if (!vm.order._id) {
                             $state.go('home');

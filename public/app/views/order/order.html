@@ -8,13 +8,13 @@
 			<form-field label="Order No" field="orderNo" record="vm.order.orderNo" ng-required="true"></form-field>
 			<form-field label='Order Date' field='orderDate' record='vm.order.orderDate'></form-field>
 			<form-field label='Subject Stores' field='subjectStores' record='vm.order.subjectStores'></form-field>
-			<form-field label='Local Supplier' field='localSupplierId' record='vm.order.localSupplierId'></form-field>
+			<form-field label='Local Supplier' field='localSupplier' record='vm.order.localSupplier'></form-field>
 			<div class="form-group form-group-sm" >
-				<label class="col-sm-3 control-label" for="localSupplierId">Local Supplier</label>
+				<label class="col-sm-3 control-label" for="localSupplier">Local Supplier</label>
 				<div class="col-sm-9">
 					<select name="mySelect" id="mySelect" class="form-control" 
-					ng-options="option.companyName for option in vm.companies track by option._id" 
-					ng-model="vm.order.localSupplierId"></select>					
+					ng-options="option as option.companyName for option in vm.companies" 
+					ng-model="vm.order.localSupplier"></select>
 				</div>
 			</div>
 

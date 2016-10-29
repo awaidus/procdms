@@ -26,8 +26,8 @@ angularApp.controller("CompanyEditCtrl",
 
             var companyId = $stateParams.companyId;
 
-            //vm.companyTypes = [{ name: 'Local' }, { name: 'Foreign' }, { name: 'CoverCompany' }];
-            vm.companyTypes = [ 'Local' , 'Foreign' , 'CoverCompany' ];
+            vm.companyTypes = [{ name: 'Local' }, { name: 'Foreign' }, { name: 'CoverCompany' }];
+            //vm.companyTypes = [ 'Local' , 'Foreign' , 'CoverCompany' ];
 
             if (companyId) {
 
@@ -44,10 +44,9 @@ angularApp.controller("CompanyEditCtrl",
             };
 
 
-            vm.save = function () {
+            vm.save = function () {                
                 
-                console.log(vm.company.companyType);
-                console.log(vm.companyTypes);
+                console.log(vm.company.companyType);                
                 
                 CompanyService.save(vm.company).then(
 

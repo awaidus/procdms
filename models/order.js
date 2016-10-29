@@ -2,15 +2,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var orderScehma = new Schema({
+    
     orderType: { type: String },
-    coverCompanyCode: String,
+    coverCompanyCode: { type: String, ref: 'Company' },
     orderNo: { type: String },
     orderDate: { type: Date },
     subjectStores: { type: String },
 
-    localSupplierId: { type: Schema.Types.ObjectId, ref: 'Company' },
-    laRepId: { type: Schema.Types.ObjectId, ref: 'Company' },
-    foreignSupplierId: { type: Schema.Types.ObjectId, ref: 'Company' },
+    localSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
+    laRep: { type: Schema.Types.ObjectId, ref: 'Company' },
+    foreignSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
 
     deliveryPort: { type: String },
     receivePort: { type: String },

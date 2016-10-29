@@ -7,9 +7,9 @@ exports.create = function (order, next) {
         orderNo: order.orderNo,
         orderDate: order.orderDate,
         subjectStores: order.subjectStores,
-        localSupplierId: order.localSupplierId,
-        laRepId: order.laRepId,
-        foreignSupplierId: order.foreignSupplierId,
+        localSupplier: order.localSupplier._id,
+        laRep: order.laRep._id,
+        foreignSupplier: order.foreignSupplier._id,
         deliveryPort: order.deliveryPort,
         receivePort: order.receivePort,
         shipMode: order.shipMode,
@@ -60,9 +60,8 @@ exports.update = function (order, next) {
         data.orderNo = order.orderNo;
         data.orderDate = order.orderDate;
         data.subjectStores = order.subjectStores;
-        data.localSupplierId = order.localSupplierId;
-        data.laRepId = order.laRepId;
-        data.foreignSupplierId = order.foreignSupplierId;
+        data.localSupplier = order.localSupplier._id;
+        
         data.deliveryPort = order.deliveryPort;
         data.receivePort = order.receivePort;
         data.shipMode = order.shipMode;
@@ -103,7 +102,7 @@ exports.get = function (id, next) {
     if (id) {
         Order
             .findById(id)
-            .populate('company')
+            //.populate('localSupplier')
             .exec(function (err, data) {
                 next(err, data);
             });
@@ -111,8 +110,8 @@ exports.get = function (id, next) {
     else {
         Order
             .find()
-            .populate('company')
-            .exec(function (err, data) {
+            .populate('localSupplier')
+            .exec(function (err, data) {                
                 next(err, data);
             });
     }
