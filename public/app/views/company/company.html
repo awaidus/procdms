@@ -12,10 +12,11 @@
 			<!--<form-field label='Company Type' field='companyType' record='vm.company.companyType'></form-field>-->
 
 			<div class="form-group form-group-sm">
-				<label class="col-sm-3 control-label" for="companyType">Company Type {{vm.order.companyType}}</label>
+				<label class="col-sm-3 control-label" for="companyType">Company Type</label>
 				<div class="col-sm-9">
-					<select name="companyType" id="companyType" class="form-control" ng-options="option.name as option.name for option in vm.companyTypes"
-						ng-model="vm.order.companyType"></select>
+					<select name="companyType" id="companyType" class="form-control" 
+					ng-options="option as option for option in vm.companyTypes"
+						ng-model="vm.company.companyType"></select>
 				</div>
 			</div>
 

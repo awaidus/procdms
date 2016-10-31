@@ -22,14 +22,15 @@ angularApp.config([
             })
             .state('getorder', {
                 abstract: true,
-                url: "/order/getorder/:orderId",
-                templateUrl: "/app/views/order/order-layout.html"
+                url: "/order/:orderId",
+                templateUrl: "/app/views/order/order-layout.html",
+                controller: 'OrderEditCtrl as vm'
             })
 
             .state('getorder.order', {
-                url: "/order",
+                url: "/",
                 templateUrl: "/app/views/order/order.html",
-                controller: 'EditOrderCtrl as vm'
+                controller: 'OrderEditCtrl as vm'
             })
             .state('getorder.payment', {
                 url: "/payment/:paymentId",
@@ -56,7 +57,7 @@ angularApp.config([
             .state('test', {
                 url: "/testing",
                 templateUrl: "angularApps/partial_views/test/test.html",
-                controller: 'EditOrderCtrl as vm',
+                controller: 'OrderEditCtrl as vm',
                 resolve: {
                     LocalSuppliers: ['CompaniesService', function (CompaniesService) {
                         return CompaniesService.getAllLocalSuppliers();

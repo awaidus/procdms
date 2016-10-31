@@ -1,35 +1,31 @@
 <div class="modal-header">
-	<h3 class="modal-title">Title: {{vm.pageTitle}}</h3>
+	<h3 class="modal-title"> {{vm.pageTitle}}</h3>
+	<h4>Supply Order No. <strong>{{vm.order.orderNo}}</strong> Dated {{vm.order.orderDate | date:'dd-MMM-yyyy'}}</stron></h4>	
 </div>
-<div class="modal-body">
-	<h4>Supply Order No. <strong>{{vm.order.orderNo}}</strong> dated {{vm.order.orderDate | date:'dd-MMM-yyyy'}}</stron>
-	</h4>
+<div class="modal-body">	
 
 	<ul class="nav nav-tabs">
-		<li role="presentation" ui-sref-active="active"><a ui-sref=".order">Supply Order</a></li>
-		<!--<li role="presentation" ui-sref-active="active" ng-if="vm.orderId">
-            <a ui-sref=".paymentList">Payments</a>
-        </li>-->
-
-		<li role="presentation" class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span>
+		<li role="presentation" ui-sref-active="active"><a ui-sref=".order({orderId: vm.order._id})">Supply Order</a></li> 
+		
+		<li role="presentation" class="dropdown" ng-if="vm.order" ui-sref-active="active">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Payments <span class="caret"></span>
             </a>
-			<ul class="dropdown-menu">
-				<li ui-sref-active="active"><a ui-sref=".payment">Supply Order</a></li>
-				<li><a href="">New Payment</a></li>
+			<ul class="dropdown-menu">				
+				<li ui-sref-active="active"><a ui-sref=".payment({paymentId: null})">New Payment</a></li>
 				<li role="separator" class="divider"></li>
-				<li role="presentation" ui-sref-active="active"><a ui-sref=".paymentList">Payments</a></li>
-				<li><a href="">Pay. No. 1 </a></li>
+				<li role="presentation" ui-sref-active="active" ng-repeat="payment in vm.order.payments">
+					<a ui-sref=".payment({paymentId: payment._id})">{{ $index + 1 }} : Payment</a>
+				</li>
 			</ul>
 		</li>
-
-
+	
 		<li role="presentation">
 			<a><span class="glyphicon glyphicon-refresh" ng-click="vm.refresh()"></span></a>
 		</li>
 	</ul>
 
-	<div ui-view></div>
+	<div ui-view></div> <!--Sub partial view will be added here-->
+
 </div>
 <div class="modal-footer">
 	<!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

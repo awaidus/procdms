@@ -16,7 +16,7 @@
 		<th>Type</th>
 		<th></th>
 	</tr>
-	<tr ng-repeat="item in vm.companies | array | filter:query | orderBy: item.companyName | limitTo:12">
+	<tr ng-repeat="item in vm.companies | array | filter:query | orderBy: item.companyName | limitTo:12 ">
 		<td>{{ $index + 1 }}</td>
 		<td>
 			<div><strong>{{ item.companyName }}</strong></div>

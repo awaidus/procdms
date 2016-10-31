@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var companySchema = new Schema({
-    
+
     companyType: { type: String },
     companyCode: { type: String },
     companyName: { type: String },
@@ -12,10 +12,12 @@ var companySchema = new Schema({
     phone: { type: String },
     email: { type: String },
     contactPerson: { type: String },
-    bankDetails: { type: String },
-        
-    created: { type: Date, default: Date.now }
-});
+    bankDetails: { type: String }
+},
+    {
+        timestamps: true
+    }
+);
 
 var Company = mongoose.model('Company', companySchema);
 

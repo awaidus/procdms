@@ -2,16 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var orderScehma = new Schema({
-    
+
     orderType: { type: String },
-    coverCompanyCode: { type: String, ref: 'Company' },
     orderNo: { type: String },
     orderDate: { type: Date },
     subjectStores: { type: String },
 
-    localSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
-    laRep: { type: Schema.Types.ObjectId, ref: 'Company' },
-    foreignSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
 
     deliveryPort: { type: String },
     receivePort: { type: String },
@@ -41,8 +37,21 @@ var orderScehma = new Schema({
     indentDate: { type: Date },
     budgetHead: { type: String },
 
-    created: { type: Date, default: Date.now }
-});
+    //navigations
+    coverCompany: { type: Schema.Types.ObjectId, ref: 'Company' },
+    localSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
+    laRep: { type: Schema.Types.ObjectId, ref: 'Company' },
+    foreignSupplier: { type: Schema.Types.ObjectId, ref: 'Company' },
+     
+    payments: [{ type: Schema.Types.ObjectId, ref: 'Payment' }],
+    shipments: [{ type: Schema.Types.ObjectId, ref: 'Shipment' }]
+    
+    //created: { type: Date, default: Date.now }
+},
+    {
+        timestamps: true
+    }
+);
 
 var Order = mongoose.model('Order', orderScehma);
 

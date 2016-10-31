@@ -1,24 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var paymentService = require('../services/payment-service');
 
-var orderService = require('../services/order-service');
+/* GET all payments */
+router.get('/:orderId?', function (req, res, next) {
 
-/* GET all orders */
-router.get('/', function (req, res, next) {
-
-    orderService.get(null, function (err, data) {
+    paymentService.get(null, function (err, data) {
         if (err) {
+            //return res.json(err);
             return res.send();
         }
-        res.json(data);
+        res.json(data, err);
     });
 
 });
 
-/* GET specific order */
+/* GET specific payment */
 router.get('/get/:id?', function (req, res, next) {
 
-    orderService.get(req.params.id, function (err, data) {
+    paymentService.get(req.params.id, function (err, data) {
         if (err) {
             return res.send();
         }
@@ -26,15 +26,9 @@ router.get('/get/:id?', function (req, res, next) {
     });
 });
 
-router.get('/create', function (req, res, next) {
-    var order = new Order();
-    res.json(order);
-});
+router.post('/create/:orderId?', function (req, res, next) {
 
-
-router.post('/create', function (req, res, next) {
-
-    orderService.create(req.body, function (err) {
+    paymentService.create(req.params.orderId, req.body, function (err) {
         if (err) {
             return res.send();
         }
@@ -45,7 +39,7 @@ router.post('/create', function (req, res, next) {
 
 router.post('/update', function (req, res, next) {
 
-    orderService.update(req.body, function (err) {
+    paymentService.update(req.body, function (err) {
         if (err) {
             return res.send();
         }
@@ -57,9 +51,9 @@ router.post('/update', function (req, res, next) {
 
 router.post('/delete', function (req, res, next) {
 
-    orderService.delete(req.body, function (err) {
+    paymentService.delete(req.body, function (err) {
         if (err) {
-            return res.send();
+           return res.send();
         }
         res.json(req.body);
     });

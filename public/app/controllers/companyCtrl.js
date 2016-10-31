@@ -26,14 +26,15 @@ angularApp.controller("CompanyEditCtrl",
 
             var companyId = $stateParams.companyId;
 
-            vm.companyTypes = [{ name: 'Local' }, { name: 'Foreign' }, { name: 'CoverCompany' }];
-            //vm.companyTypes = [ 'Local' , 'Foreign' , 'CoverCompany' ];
+            //vm.companyTypes = [{ name: 'Local' }, { name: 'Foreign' }, { name: 'CoverCompany' }];
+            vm.companyTypes = ['Local', 'Foreign', 'CoverCompany'];
 
             if (companyId) {
 
                 CompanyService.get(companyId).then(
                     function (result) {
                         vm.company = result.data;
+
                     },
 
                     function (result) {
@@ -44,18 +45,16 @@ angularApp.controller("CompanyEditCtrl",
             };
 
 
-            vm.save = function () {                
-                
-                console.log(vm.company.companyType);                
-                
+            vm.save = function () {
+
                 CompanyService.save(vm.company).then(
 
                     function (result) {
 
+                        toastr.success("Sucessfully saved.");
+                        
                         if (!vm.company._id) {
-
                             $state.go('companiesList');
-                            toastr.success("Sucessfully saved.");
                         }
 
                     }, function (result) {

@@ -1,42 +1,35 @@
 var express = require('express');
 var router = express.Router();
+var shipmentService = require('../services/shipment-service');
 
-var orderService = require('../services/order-service');
-
-/* GET all orders */
+/* GET all shipments */
 router.get('/', function (req, res, next) {
 
-    orderService.get(null, function (err, data) {
+    shipmentService.get(null, function (err, data) {
         if (err) {
-            return res.send();
+            return res.json(err);
         }
-        res.json(data);
+        res.json(data, err);
     });
 
 });
 
-/* GET specific order */
+/* GET specific shipment */
 router.get('/get/:id?', function (req, res, next) {
 
-    orderService.get(req.params.id, function (err, data) {
+    shipmentService.get(req.params.id, function (err, data) {
         if (err) {
-            return res.send();
+            res.json(err);
         }
         res.json(data);
     });
 });
-
-router.get('/create', function (req, res, next) {
-    var order = new Order();
-    res.json(order);
-});
-
 
 router.post('/create', function (req, res, next) {
 
-    orderService.create(req.body, function (err) {
+    shipmentService.create(req.body, function (err) {
         if (err) {
-            return res.send();
+            res.json(err);
         }
         res.json(req.body);
     });
@@ -45,9 +38,9 @@ router.post('/create', function (req, res, next) {
 
 router.post('/update', function (req, res, next) {
 
-    orderService.update(req.body, function (err) {
+    shipmentService.update(req.body, function (err) {
         if (err) {
-            return res.send();
+            res.json(err);
         }
         res.json(req.body);
     });
@@ -57,9 +50,9 @@ router.post('/update', function (req, res, next) {
 
 router.post('/delete', function (req, res, next) {
 
-    orderService.delete(req.body, function (err) {
+    shipmentService.delete(req.body, function (err) {
         if (err) {
-            return res.send();
+            res.json(err);
         }
         res.json(req.body);
     });

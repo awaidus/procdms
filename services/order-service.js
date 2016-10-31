@@ -1,15 +1,19 @@
 var Order = require('../models/order').Order;
 
+// ==================================================================================
 exports.create = function (order, next) {
     var newOrder = new Order({
         orderType: order.orderType,
-        coverCompanyCode: order.coverCompanyCode,
+
         orderNo: order.orderNo,
         orderDate: order.orderDate,
         subjectStores: order.subjectStores,
-        localSupplier: order.localSupplier._id,
-        laRep: order.laRep._id,
-        foreignSupplier: order.foreignSupplier._id,
+
+        coverCompanyCode: (order.coverCompany._id) || null,
+        localSupplier: (order.localSupplier._id) || null,
+        //laRep: order.laRep._id,
+        foreignSupplier: (order.foreignSupplier._id) || null,
+
         deliveryPort: order.deliveryPort,
         receivePort: order.receivePort,
         shipMode: order.shipMode,
@@ -36,7 +40,9 @@ exports.create = function (order, next) {
         indenter: order.indenter,
         indentNo: order.indentNo,
         indentDate: order.indentDate,
-        budgetHead: order.budgetHead
+        budgetHead: order.budgetHead,
+
+        
     });
 
     newOrder.save(function (err) {
@@ -47,7 +53,7 @@ exports.create = function (order, next) {
     });
 };
 
-
+// ==================================================================================
 exports.update = function (order, next) {
     var id = order._id;
     Order.findById(id, function (err, data) {
@@ -56,12 +62,14 @@ exports.update = function (order, next) {
         }
 
         data.orderType = order.orderType;
-        data.coverCompanyCode = order.coverCompanyCode;
         data.orderNo = order.orderNo;
         data.orderDate = order.orderDate;
         data.subjectStores = order.subjectStores;
-        data.localSupplier = order.localSupplier._id;
-        
+
+        data.coverCompany = (order.coverCompany._id) || null;
+        data.localSupplier = (order.localSupplier._id) || null;
+        data.foreignSupplier = (order.foreignSupplier._id) || null,
+
         data.deliveryPort = order.deliveryPort;
         data.receivePort = order.receivePort;
         data.shipMode = order.shipMode;
@@ -97,12 +105,25 @@ exports.update = function (order, next) {
 
 };
 
+// ==================================================================================
+exports.delete = function (order, next) {
+
+    var id = order._id;
+    Order.findByIdAndRemove(id, function (err, data) {
+        if (err) {
+            return next(err);
+        }
+        next(null);
+    });
+};
+
+// ==================================================================================
 exports.get = function (id, next) {
 
     if (id) {
         Order
             .findById(id)
-            //.populate('localSupplier')
+            .populate('coverCompany localSupplier foreignSupplier payments')
             .exec(function (err, data) {
                 next(err, data);
             });
@@ -110,8 +131,8 @@ exports.get = function (id, next) {
     else {
         Order
             .find()
-            .populate('localSupplier')
-            .exec(function (err, data) {                
+            .populate('coverCompany localSupplier foreignSupplier payments')
+            .exec(function (err, data) {
                 next(err, data);
             });
     }

@@ -4,37 +4,71 @@
 	<div class="row">
 		<div class="col-md-4">
 
-			<form-field label='Order Type' field='orderType' record='vm.order.orderType'></form-field>
-			<form-field label="Order No" field="orderNo" record="vm.order.orderNo" ng-required="true"></form-field>
-			<form-field label='Order Date' field='orderDate' record='vm.order.orderDate'></form-field>
-			<form-field label='Subject Stores' field='subjectStores' record='vm.order.subjectStores'></form-field>
-			<form-field label='Local Supplier' field='localSupplier' record='vm.order.localSupplier'></form-field>
-			<div class="form-group form-group-sm" >
-				<label class="col-sm-3 control-label" for="localSupplier">Local Supplier</label>
+			<div class="form-group form-group-sm">
+				<label class="col-sm-3 control-label" for="orderType">Order Type</label>
 				<div class="col-sm-9">
-					<select name="mySelect" id="mySelect" class="form-control" 
-					ng-options="option as option.companyName for option in vm.companies" 
-					ng-model="vm.order.localSupplier"></select>
+					<select name="orderType" id="orderType" class="form-control" 
+					ng-options="option as option for option in vm.orderTypes"
+						ng-model="vm.order.orderType"></select>
 				</div>
 			</div>
 
-			<form-field label='Foreign Supplier' field='foreignSupplierId' record='vm.order.foreignSupplierId'></form-field>
+
+			<div class="form-group form-group-sm" >
+				<label class="col-sm-3 control-label" for="coverCompany">Cover Comany</label>
+				<div class="col-sm-9">
+					<select name="coverCompany" id="coverCompany" class="form-control" 
+					ng-options="option as option.companyName for option in vm.coverCompanies track by option._id" 
+					ng-model="vm.order.coverCompany"></select>
+				</div>
+			</div>
+
+			<form-field label="Order No" field="orderNo" record="vm.order.orderNo" ng-required="true"></form-field>
+			<form-field label='Order Date' field='orderDate' record='vm.order.orderDate'></form-field>
+			<form-field label='Subject Stores' field='subjectStores' record='vm.order.subjectStores'></form-field>			
+			<div class="form-group form-group-sm" >
+				<label class="col-sm-3 control-label" for="localSupplier">Local Supplier</label>
+				<div class="col-sm-9">
+					<select name="localSupplier" id="localSupplier" class="form-control" 
+					ng-options="option as option.companyName for option in vm.localSuppliers track by option._id" 
+					ng-model="vm.order.localSupplier"></select>
+				</div>
+			</div>
+			<div class="form-group form-group-sm" >
+				<label class="col-sm-3 control-label" for="foreignSupplier">Foreign Supplier</label>
+				<div class="col-sm-9">
+					<select name="foreignSupplier" id="foreignSupplier" class="form-control" 
+					ng-options="option as option.companyName for option in vm.foreignSuppliers track by option._id" 
+					ng-model="vm.order.foreignSupplier"></select>
+				</div>
+			</div>
+
+			
 			<form-field label='Delivery Port' field='deliveryPort' record='vm.order.deliveryPort'></form-field>
 			<form-field label='Receive Port' field='receivePort' record='vm.order.receivePort'></form-field>
-			<form-field label='shipmentMode' field='shipmentMode' record='vm.order.shipmentMode'></form-field>
-			<form-field label='Payment Term' field='paymentTerm' record='vm.order.paymentTerm'></form-field>
+			
+			<div class="form-group form-group-sm">
+				<label class="col-sm-3 control-label" for="shipMode">Ship. Mode</label>
+				<div class="col-sm-9">
+					<select name="shipMode" id="shipMode" class="form-control" 
+					ng-options="option as option for option in vm.shipModes"
+						ng-model="vm.order.shipMode"></select>
+				</div>
+			</div>
+
+			<form-field label='Pay. Term' field='payTerm' record='vm.order.payTerm'></form-field>
 
 		</div>
+		
 		<div class="col-md-4">
 			<form-field label='currency' field='currency' record='vm.order.currency'></form-field>
 			<form-field label='Ex.Works Value' field='exWorksValue' record='vm.order.exWorksValue'></form-field>
 			<form-field label='FOB Charges' field='fobCharges' record='vm.order.fobCharges'></form-field>
 			<form-field label='Freight Charges' field='freightCharges' record='vm.order.freightCharges'></form-field>
 			<form-field label='Freight Type' field='freightType' record='vm.order.freightType'></form-field>
-
 		</div>
+		
 		<div class="col-md-4">
-
 			<form-field label='Project' field='project' record='vm.order.project'></form-field>
 		</div>
 	</div>

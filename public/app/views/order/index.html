@@ -11,6 +11,7 @@
         <th>Order Details</th>
         <th>Suppliers Details</th>
         <th>Payment Details</th>
+        <th>Shipment Details</th>
         <th></th>
     </tr>
     <tr ng-repeat="item in vm.orders | array | filter:query | orderBy: item.orderDate">
@@ -20,13 +21,19 @@
             <div>[{{ item.subjectStores}}]</div>
         </td>
         <td>
-            <div>M/s. {{item.localSupplier.companyName + ' ' + item.fsCityCountry}}</div>
-            <div>LA: M/s. {{item.lsName + ' ' + item.lsCityCountry}}</div>
+            <div>M/s. {{item.foreignSupplier.companyName + ' ' + item.foreignSupplier.cityCountry}}</div>
+            <div>LA: M/s. {{item.localSupplier.companyName + ' ' + item.localSupplier.cityCountry}}</div>
         </td>
         <td>
-            <div ng-show = "{{item.paymentId}}">
-                <div>{{ item.payMode }} No. {{item.lcNo}} Dated {{ item.lcDate }}</div>
-                <div><strong>Expired on {{ item.lcExpDate }}</strong></div>
+            <div ng-if = "!item.order.payments" ng-repeat="payment in item.payments">
+                <div>{{ payment.paymentMode }} No. {{payment.paymentNo}} Dated {{ payment.paymentDate }}</div>
+                <div><strong>Expired on {{ item.lcExpiryDate }}</strong></div>
+            </div>
+        </td>
+        <td>
+            <div ng-if = "!item.order.shipments" ng-repeat="shipment in item.shipments">
+                <div>{{ payment.paymentMode }} No. {{payment.paymentNo}} Dated {{ payment.paymentDate }}</div>
+                <div><strong>Expired on {{ item.lcExpiryDate }}</strong></div>
             </div>
         </td>
         <td>

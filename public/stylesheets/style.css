@@ -7,12 +7,25 @@ a {
   color: #00B7FF;
 }
 
+.form-group {
+    margin-bottom: 3px;
+}
 
 .control-label {
   padding-left: 5px;
-  padding-right: 5px;
+  padding-right: 1px;
 }
 
-.form-control{
-  padding: 5px, 5px,5px, 5px; 
+.form-horizontal .form-group {
+    margin-right: -3px;
+    margin-left: -15px;
+}
+
+.form-group-sm .form-control {
+    /*height: 30px;*/
+    padding: 5px 5px;
+    margin-bottom: 1px;
+    font-size: 12px;
+    line-height: 1.2;
+    border-radius: 3px;
 }
